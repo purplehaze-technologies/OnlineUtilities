@@ -177,6 +177,16 @@ When a custom domain is added later, update `NEXT_PUBLIC_SITE_URL`; metadata, ca
 
 ---
 
+## Documentation
+
+Start with [CLAUDE.md](./CLAUDE.md) (context for AI agents) and the [docs/](./docs/) index. Key references:
+
+- **Building tools:** [docs/tool-template.md](./docs/tool-template.md) · [docs/adding-a-tool.md](./docs/adding-a-tool.md) · [docs/release-checklist.md](./docs/release-checklist.md)
+- **Guides:** [docs/architecture.md](./docs/architecture.md) · [docs/design-system.md](./docs/design-system.md) · [docs/component-conventions.md](./docs/component-conventions.md) · [docs/seo-guide.md](./docs/seo-guide.md) · [docs/performance.md](./docs/performance.md) · [docs/testing.md](./docs/testing.md)
+- **Decisions & direction:** [docs/adr/](./docs/adr/) · [docs/roadmap.md](./docs/roadmap.md)
+
+---
+
 ## License
 
 See [LICENSE](./LICENSE).

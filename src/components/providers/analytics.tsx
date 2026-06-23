@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /**
  * Conditionally loads analytics providers based on environment variables.
@@ -42,7 +43,12 @@ export function Analytics() {
         </Script>
       ) : null}
 
-      {vercelEnabled ? <VercelAnalytics /> : null}
+      {vercelEnabled ? (
+        <>
+          <VercelAnalytics />
+          <SpeedInsights />
+        </>
+      ) : null}
     </>
   );
 }
