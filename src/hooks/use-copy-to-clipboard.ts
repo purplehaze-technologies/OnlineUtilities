@@ -2,29 +2,33 @@
 
 import * as React from "react";
 
+import { copyToClipboard } from "@/lib/utils/clipboard";
+import { FEEDBACK_RESET_MS } from "@/lib/constants/tool";
+
 /**
- * Copy text to the clipboard and expose a transient `copied` flag.
- * Shared utility for the tools that will be built on top of this foundation.
+ * Copy text to the clipboard and expose a transient `copied` flag plus an
+ * `error` flag for the failure case. Shared by every tool with a copy action
+ * (and by the `CopyButton` primitive).
  */
-export function useCopyToClipboard(resetDelay = 2000) {
+export function useCopyToClipboard(resetDelay = FEEDBACK_RESET_MS) {
   const [copied, setCopied] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
   const copy = React.useCallback(async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      return true;
-    } catch {
-      setCopied(false);
-      return false;
-    }
+    const ok = await copyToClipboard(text);
+    setCopied(ok);
+    setError(!ok);
+    return ok;
   }, []);
 
   React.useEffect(() => {
-    if (!copied) return;
-    const timer = setTimeout(() => setCopied(false), resetDelay);
+    if (!copied && !error) return;
+    const timer = setTimeout(() => {
+      setCopied(false);
+      setError(false);
+    }, resetDelay);
     return () => clearTimeout(timer);
-  }, [copied, resetDelay]);
+  }, [copied, error, resetDelay]);
 
-  return { copied, copy };
+  return { copied, error, copy };
 }

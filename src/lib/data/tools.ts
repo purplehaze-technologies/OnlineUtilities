@@ -25,7 +25,7 @@ export const tools: Tool[] = [
     icon: "qrcode",
     keywords: ["qr", "qr code", "generator", "url to qr", "wifi qr"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "barcode-generator",
