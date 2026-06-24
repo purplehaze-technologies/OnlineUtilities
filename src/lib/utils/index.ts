@@ -13,6 +13,14 @@ export {
   normalizeHex,
   relativeLuminance,
   contrastRatio,
+  hexToRgb,
+  rgbToHex,
+  rgbToHsl,
+  hslToRgb,
+  rgbToHsv,
+  rgbToCmyk,
+  randomHex,
+  wcagLevel,
 } from "./color";
 
 /**
