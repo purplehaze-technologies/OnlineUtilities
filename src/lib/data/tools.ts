@@ -1,4 +1,4 @@
-import type { CategoryId, Tool } from "@/types";
+﻿import type { CategoryId, Tool } from "@/types";
 
 /**
  * Single source of truth for every utility. Homepage, search, category pages,
@@ -7,9 +7,9 @@ import type { CategoryId, Tool } from "@/types";
  * Adding a tool:
  *   1. Add an entry here (and an icon key in `lib/data/icons.ts`).
  *   2. Create `app/tools/<slug>/page.tsx` (copy an existing placeholder).
- * Everything else — listing, search, SEO, sitemap — updates automatically.
+ * Everything else â€” listing, search, SEO, sitemap â€” updates automatically.
  *
- * `comingSoon: true` renders the polished placeholder. Flip it to `false`
+ * `comingSoon: false` renders the polished placeholder. Flip it to `false`
  * once the tool's UI is implemented.
  */
 export const tools: Tool[] = [
@@ -18,9 +18,9 @@ export const tools: Tool[] = [
     name: "QR Code Generator",
     slug: "qr-code-generator",
     description:
-      "Create custom QR codes for URLs, text, Wi-Fi and more — free and instant.",
+      "Create custom QR codes for URLs, text, Wi-Fi and more â€” free and instant.",
     longDescription:
-      "Generate high-resolution QR codes for links, plain text, contact cards, Wi-Fi credentials and more. Customize colors and download as PNG or SVG — all in your browser, with no sign-up.",
+      "Generate high-resolution QR codes for links, plain text, contact cards, Wi-Fi credentials and more. Customize colors and download as PNG or SVG â€” all in your browser, with no sign-up.",
     category: "qr-barcode",
     icon: "qrcode",
     keywords: ["qr", "qr code", "generator", "url to qr", "wifi qr"],
@@ -37,7 +37,7 @@ export const tools: Tool[] = [
     icon: "barcode",
     keywords: ["barcode", "ean", "upc", "code128", "code39"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "password-generator",
@@ -49,7 +49,7 @@ export const tools: Tool[] = [
     icon: "password",
     keywords: ["password", "random", "secure", "passphrase", "generator"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "uuid-generator",
@@ -60,7 +60,7 @@ export const tools: Tool[] = [
     icon: "uuid",
     keywords: ["uuid", "guid", "v4", "unique id", "identifier"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "json-formatter",
@@ -71,7 +71,7 @@ export const tools: Tool[] = [
     icon: "json",
     keywords: ["json", "formatter", "beautify", "minify", "validate", "pretty"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "jwt-decoder",
@@ -83,7 +83,7 @@ export const tools: Tool[] = [
     icon: "jwt",
     keywords: ["jwt", "json web token", "decode", "header", "payload"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "base64-tools",
@@ -94,7 +94,7 @@ export const tools: Tool[] = [
     icon: "base64",
     keywords: ["base64", "encode", "decode", "encoder", "decoder"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "image-to-base64",
@@ -105,7 +105,7 @@ export const tools: Tool[] = [
     icon: "image-base64",
     keywords: ["image", "base64", "data uri", "inline", "convert"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "color-picker",
@@ -116,7 +116,7 @@ export const tools: Tool[] = [
     icon: "color",
     keywords: ["color", "picker", "hex", "rgb", "hsl", "converter"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "age-calculator",
@@ -127,7 +127,7 @@ export const tools: Tool[] = [
     icon: "age",
     keywords: ["age", "calculator", "birthday", "date difference"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "gst-calculator",
@@ -138,7 +138,7 @@ export const tools: Tool[] = [
     icon: "gst",
     keywords: ["gst", "tax", "calculator", "vat", "india"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "sip-calculator",
@@ -149,7 +149,7 @@ export const tools: Tool[] = [
     icon: "sip",
     keywords: ["sip", "mutual fund", "investment", "returns", "calculator"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "emi-calculator",
@@ -160,7 +160,7 @@ export const tools: Tool[] = [
     icon: "emi",
     keywords: ["emi", "loan", "interest", "mortgage", "calculator"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "word-counter",
@@ -171,7 +171,7 @@ export const tools: Tool[] = [
     icon: "word-counter",
     keywords: ["word", "counter", "characters", "reading time", "text"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "case-converter",
@@ -183,7 +183,7 @@ export const tools: Tool[] = [
     icon: "case-converter",
     keywords: ["case", "converter", "uppercase", "lowercase", "title case"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "markdown-previewer",
@@ -194,7 +194,7 @@ export const tools: Tool[] = [
     icon: "markdown",
     keywords: ["markdown", "preview", "md", "html", "editor"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "meta-tag-generator",
@@ -205,7 +205,7 @@ export const tools: Tool[] = [
     icon: "meta",
     keywords: ["meta", "tags", "seo", "open graph", "twitter card"],
     featured: true,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "sitemap-generator",
@@ -216,7 +216,7 @@ export const tools: Tool[] = [
     icon: "sitemap",
     keywords: ["sitemap", "xml", "seo", "crawl", "generator"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "schema-generator",
@@ -227,7 +227,7 @@ export const tools: Tool[] = [
     icon: "schema",
     keywords: ["schema", "json-ld", "structured data", "rich results", "seo"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     id: "slug-generator",
@@ -238,7 +238,7 @@ export const tools: Tool[] = [
     icon: "slug",
     keywords: ["slug", "url", "permalink", "seo", "generator"],
     featured: false,
-    comingSoon: true,
+    comingSoon: false,
   },
 ];
 
@@ -284,7 +284,7 @@ export function getPopularTools(limit = 8): Tool[] {
 
 /**
  * Case-insensitive search across name, description, category and keywords.
- * Pure and synchronous — runs instantly on the in-memory dataset.
+ * Pure and synchronous â€” runs instantly on the in-memory dataset.
  */
 export function searchTools(query: string): Tool[] {
   const q = query.trim().toLowerCase();
