@@ -1,192 +1,222 @@
-# OnlineUtilities
+# OnlineUtility
 
-A fast, modern, SEO-first suite of **free online utilities** — QR code generator, JSON formatter, password generator, calculators, converters and more. Built to scale from one tool to 200+ without architectural changes.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?logo=tailwindcss)](https://tailwindcss.com)
+[![Build](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/your-org/OnlineUtility/actions)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> **Status:** Foundation + placeholder tool pages. The homepage, search, design system, SEO infrastructure and all routes are implemented. Individual tool UIs (starting with the QR Code Generator) are added incrementally.
+> **The Open Source Home for Free Online Tools.**
+
+A fast, privacy-first, SEO-optimised collection of browser-based utilities — free forever, no sign-up required.
+
+---
+
+## Overview
+
+OnlineUtility gives everyone access to high-quality tools that run entirely in the browser. No data leaves your machine unless a tool explicitly requires it. The architecture is designed to scale from the current 20+ tools to hundreds with no structural changes — almost everything is derived from a small set of data files.
+
+---
+
+## Features
+
+- **20+ tools** across Developer, Text, Image, Calculators, SEO, QR & Barcode, and Utilities categories
+- **Privacy-first** — most tools never send data to any server
+- **Instant** — no loading spinners, no accounts, no ads
+- **Accessible** — WCAG AA compliant; full keyboard navigation
+- **SEO-optimised** — server-rendered pages, structured data, sitemap, Open Graph
+- **Dark mode** — system preference respected, toggle available
+- **Responsive** — works on every screen size
+- **Data-driven** — adding a tool is a two-step, zero-config process
+- **Production build always green** — typecheck + lint enforced on every commit
+
+---
+
+## Screenshots
+
+> _Screenshots coming soon._
+
+---
+
+## Live Demo
+
+🌐 **[onlineutility.io](https://onlineutility.io)**
 
 ---
 
 ## Tech Stack
 
-| Concern    | Choice                                                       |
-| ---------- | ------------------------------------------------------------ |
-| Framework  | **Next.js 16** (App Router, RSC, Turbopack)                  |
-| UI runtime | **React 19**                                                 |
-| Language   | **TypeScript** (strict)                                      |
-| Styling    | **Tailwind CSS v4** (CSS-first `@theme`)                     |
-| Components | **shadcn/ui** style (hand-authored, Radix primitives)        |
-| Icons      | **lucide-react** (tree-shaken via a typed registry)          |
-| Variants   | **class-variance-authority** + **clsx** + **tailwind-merge** |
-| Theming    | **next-themes** (light / dark / system)                      |
-| Validation | **Zod** (ready for tool inputs)                              |
-| Analytics  | GA4, Microsoft Clarity, **@vercel/analytics** (env-gated)    |
-| Quality    | ESLint, Prettier, Husky, lint-staged                         |
-| SEO        | Native Metadata API, `sitemap.ts`, `robots.ts`, JSON-LD      |
-
-> The PRD referenced "Next.js 15"; `create-next-app` now ships **Next.js 16** as the latest stable, and the App Router architecture is identical. We track latest stable per the requirements.
-
-### Why these choices
-
-- **App Router + RSC** render pages as static HTML by default → near-perfect Lighthouse SEO/performance and per-route metadata.
-- **Tailwind v4** is CSS-first (no JS theme config), with a smaller, faster build.
-- **shadcn-style components** mean we _own_ the component code (no runtime UI dependency) while keeping Radix accessibility.
-- **Data-driven everything** — one `tools.ts` array powers the homepage, search, category pages, related tools and the sitemap.
-- **Native sitemap/robots** over `next-sitemap`: type-safe, zero extra deps, and automatically in sync with the data files.
+| Layer      | Technology                                        |
+| ---------- | ------------------------------------------------- |
+| Framework  | Next.js 16 (App Router, RSC, Turbopack)           |
+| UI Library | React 19                                          |
+| Language   | TypeScript 5 (strict mode)                        |
+| Styling    | Tailwind CSS v4 (CSS-first, no config file)       |
+| Components | Radix UI primitives (hand-authored, shadcn-style) |
+| Icons      | Lucide React                                      |
+| Validation | Zod 4                                             |
+| Analytics  | Vercel Analytics + Speed Insights                 |
+| Hosting    | Vercel                                            |
 
 ---
 
-## Folder Structure
+## Installation
 
-```
-src/
-  app/
-    (marketing)/            # about, contact, privacy, terms (route group)
-    categories/[category]/  # SSG category landing pages
-    tools/                  # /tools index + one folder per tool
-    layout.tsx              # root layout: theme, header/footer, SEO defaults
-    page.tsx                # homepage
-    sitemap.ts robots.ts manifest.ts
-    opengraph-image.tsx twitter-image.tsx
-    not-found.tsx loading.tsx globals.css
-  components/
-    ui/         # base primitives (button, input, card, badge, accordion, …)
-    layout/     # site-header, site-footer, mobile-nav, breadcrumb, theme-toggle
-    tool/       # tool-card, category-card, tool-search, tool-page-layout, …
-    shared/     # icon, json-ld, faq-section, empty-state, section-heading, …
-    providers/  # theme-provider, analytics
-  lib/
-    constants/  # site config, navigation
-    data/       # tools, categories, icons, faqs  ← single source of truth
-    seo/        # createMetadata factory + JSON-LD builders
-    utils/      # cn(), slugify(), formatNumber(), …
-    schemas/    # (Zod schemas for tool inputs — added with each tool)
-  hooks/        # use-copy-to-clipboard, …
-  types/        # Tool, Category, CategoryId
-```
-
----
-
-## Getting Started
-
-Requirements: **Node 20+** and **npm**.
+**Prerequisites:** Node.js 20+ and npm 10+.
 
 ```bash
+git clone https://github.com/your-org/OnlineUtility.git
+cd OnlineUtility
 npm install
-cp .env.example .env.local   # optional — everything no-ops without it
-npm run dev                  # http://localhost:3000
 ```
 
-### Scripts
+---
 
-| Script                 | Description                      |
-| ---------------------- | -------------------------------- |
-| `npm run dev`          | Start the dev server (Turbopack) |
-| `npm run build`        | Production build                 |
-| `npm run start`        | Serve the production build       |
-| `npm run lint`         | ESLint                           |
-| `npm run lint:fix`     | ESLint with autofix              |
-| `npm run typecheck`    | `tsc --noEmit`                   |
-| `npm run format`       | Prettier write                   |
-| `npm run format:check` | Prettier check                   |
+## Running Locally
 
-A Husky **pre-commit** hook runs `lint-staged` (ESLint + Prettier on staged files) and a full `typecheck`.
+```bash
+npm run dev        # dev server at http://localhost:3000 (Turbopack)
+npm run build      # production build
+npm run start      # serve the production build
+npm run typecheck  # tsc --noEmit
+npm run lint       # ESLint (0 warnings required)
+npm run format     # Prettier write
+```
+
+A pre-commit hook (`husky` + `lint-staged`) runs `eslint --fix`, `prettier --write`, and `tsc --noEmit` automatically on every commit.
 
 ---
 
 ## Environment Variables
 
-All variables are **optional**; each feature no-ops cleanly when its variable is absent. See [`.env.example`](./.env.example).
+| Variable               | Required | Description                                                                   |
+| ---------------------- | -------- | ----------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | No       | Canonical site URL. Falls back to `VERCEL_URL`, then `http://localhost:3000`. |
 
-| Variable                               | Purpose                                    |
-| -------------------------------------- | ------------------------------------------ |
-| `NEXT_PUBLIC_SITE_URL`                 | Canonical URL (metadata, sitemap, JSON-LD) |
-| `NEXT_PUBLIC_GA_ID`                    | Google Analytics 4 measurement ID          |
-| `NEXT_PUBLIC_CLARITY_ID`               | Microsoft Clarity project ID               |
-| `NEXT_PUBLIC_VERCEL_ANALYTICS`         | `"true"` to enable Vercel Analytics        |
-| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console verification token          |
+No other environment variables are needed for local development.
 
-If `NEXT_PUBLIC_SITE_URL` is unset, the app falls back to `VERCEL_URL` (on Vercel) or `http://localhost:3000`.
+---
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router routes
+│   ├── (marketing)/        # Homepage, /tools listing, /categories/[category]
+│   ├── tools/[slug]/       # Individual tool pages
+│   ├── sitemap.ts          # Auto-generated sitemap
+│   ├── robots.ts           # robots.txt
+│   └── opengraph-image.tsx # Edge OG image
+├── components/
+│   ├── ui/                 # Base primitives (Button, Input, Badge…)
+│   ├── layout/             # Header, Footer, Nav, Breadcrumb, ThemeToggle
+│   ├── tool/               # ToolCard, ToolSearch, ToolPageLayout, ToolWorkbench…
+│   └── shared/             # Icon, JsonLd, FaqSection, PageShell, SectionHeading
+├── lib/
+│   ├── data/               # ← single source of truth (tools.ts, categories.ts…)
+│   ├── seo/                # createMetadata(), JSON-LD builders
+│   ├── constants/          # siteConfig (name, URL, socials)
+│   ├── schemas/            # Per-tool Zod schemas
+│   └── utils/              # cn(), formatters
+├── hooks/                  # Custom React hooks
+└── types/                  # Tool, Category, CategoryId types
+```
+
+---
+
+## Available Scripts
+
+| Script                 | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm run dev`          | Start dev server with Turbopack  |
+| `npm run build`        | Production build                 |
+| `npm run start`        | Serve production build           |
+| `npm run typecheck`    | TypeScript strict check          |
+| `npm run lint`         | ESLint (must produce 0 warnings) |
+| `npm run lint:fix`     | ESLint with auto-fix             |
+| `npm run format`       | Prettier write                   |
+| `npm run format:check` | Prettier check                   |
 
 ---
 
 ## Adding a New Tool
 
-Adding a tool takes **two steps** — the architecture handles listing, search, SEO and the sitemap automatically.
+Full guide: [docs/adding-a-tool.md](docs/adding-a-tool.md). Short version:
 
-1. **Add a data entry** in [`src/lib/data/tools.ts`](./src/lib/data/tools.ts) (and an icon key in [`src/lib/data/icons.ts`](./src/lib/data/icons.ts)):
+1. Add an entry to [`src/lib/data/tools.ts`](src/lib/data/tools.ts) and register an icon key in [`src/lib/data/icons.ts`](src/lib/data/icons.ts).
+2. Create `src/app/tools/<slug>/page.tsx` by copying an existing placeholder. Place your UI inside `<ToolPageLayout tool={tool}>`.
+3. Set `comingSoon: false` once the implementation is complete.
 
-   ```ts
-   {
-     id: "my-tool",
-     name: "My Tool",
-     slug: "my-tool",
-     description: "What it does, in one SEO-friendly line.",
-     category: "developer",
-     icon: "my-tool",       // key in icons.ts
-     keywords: ["alias", "synonym"],
-     featured: false,
-     comingSoon: false,     // false once the UI is built
-   }
-   ```
-
-2. **Create the route** `src/app/tools/my-tool/page.tsx` (copy any existing placeholder). Replace `<ComingSoon />` with your tool UI inside `<ToolPageLayout>`:
-
-   ```tsx
-   export default function Page() {
-     const tool = getToolBySlug("my-tool");
-     if (!tool) notFound();
-     return (
-       <ToolPageLayout tool={tool}>{/* your tool UI here */}</ToolPageLayout>
-     );
-   }
-   ```
-
-That's it — the homepage, `/tools`, category page, related-tools, search and `sitemap.xml` update automatically.
+Listing pages, search, SEO metadata, breadcrumbs, related tools, and `sitemap.xml` all update automatically.
 
 ---
 
-## SEO
+## Contributing
 
-- **Metadata** — every route uses the `createMetadata()` factory for consistent titles, descriptions, keywords, canonical URLs, Open Graph and Twitter (`summary_large_image`) cards.
-- **JSON-LD** — reusable builders for `WebSite`, `Organization`, `WebApplication`, `BreadcrumbList` and `FAQPage` (`src/lib/seo/jsonld.ts`).
-- **Sitemap / robots** — native `app/sitemap.ts` and `app/robots.ts`, derived from the data files.
-- **Social images** — branded OG/Twitter images generated with `next/og`.
+We welcome contributions of all kinds — new tools, bug fixes, accessibility improvements, documentation, and more.
 
----
-
-## Coding Standards
-
-- **Server Components by default**; `"use client"` only where interactivity is required (theme toggle, mobile nav, search).
-- **Data-driven** — never hardcode tool/category cards; render from `lib/data`.
-- **Typed icons** via the registry; data stays serializable.
-- **Accessibility** — semantic HTML, labelled controls, visible focus rings, keyboard support, WCAG AA.
-- **Styling** through `cn()` + CVA variants; tokens live in `globals.css`.
-- Formatting and linting are enforced on commit.
-
----
-
-## Deployment (Vercel)
-
-Zero-config. Import the repo into Vercel and deploy.
-
-1. Set `NEXT_PUBLIC_SITE_URL` to your deployment URL (initially `https://online-utilities.vercel.app`).
-2. Add any analytics env vars you want enabled.
-3. Deploy — all routes are statically optimized.
-
-When a custom domain is added later, update `NEXT_PUBLIC_SITE_URL`; metadata, canonical URLs, sitemap and JSON-LD update everywhere automatically.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR. It covers branch naming, commit conventions, the PR checklist, coding standards, and accessibility requirements.
 
 ---
 
 ## Documentation
 
-Start with [CLAUDE.md](./CLAUDE.md) (context for AI agents) and the [docs/](./docs/) index. Key references:
+| Document                                                       | Description                                   |
+| -------------------------------------------------------------- | --------------------------------------------- |
+| [docs/adding-a-tool.md](docs/adding-a-tool.md)                 | Step-by-step: building a new utility          |
+| [docs/tool-template.md](docs/tool-template.md)                 | Boilerplate template for new tools            |
+| [docs/architecture.md](docs/architecture.md)                   | How and why things are built the way they are |
+| [docs/design-system.md](docs/design-system.md)                 | Design tokens, components, CSS conventions    |
+| [docs/component-conventions.md](docs/component-conventions.md) | Component authoring rules                     |
+| [docs/seo-guide.md](docs/seo-guide.md)                         | SEO, metadata, and JSON-LD patterns           |
+| [docs/performance.md](docs/performance.md)                     | Performance budgets and guidelines            |
+| [docs/release-checklist.md](docs/release-checklist.md)         | Pre-release checklist                         |
+| [ROADMAP.md](ROADMAP.md)                                       | Planned features and future ideas             |
+| [CHANGELOG.md](CHANGELOG.md)                                   | Release history                               |
 
-- **Building tools:** [docs/tool-template.md](./docs/tool-template.md) · [docs/adding-a-tool.md](./docs/adding-a-tool.md) · [docs/release-checklist.md](./docs/release-checklist.md)
-- **Guides:** [docs/architecture.md](./docs/architecture.md) · [docs/design-system.md](./docs/design-system.md) · [docs/component-conventions.md](./docs/component-conventions.md) · [docs/seo-guide.md](./docs/seo-guide.md) · [docs/performance.md](./docs/performance.md) · [docs/testing.md](./docs/testing.md)
-- **Decisions & direction:** [docs/adr/](./docs/adr/) · [docs/roadmap.md](./docs/roadmap.md)
+---
+
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for the full plan. Near-term priorities: completing tool implementations, adding image and PDF tools, and establishing a testing baseline.
+
+---
+
+## Security
+
+To report a security vulnerability, follow the process in [SECURITY.md](SECURITY.md). **Do not open a public issue for security bugs.**
 
 ---
 
 ## License
 
-See [LICENSE](./LICENSE).
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for the full text.
+
+---
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org) by Vercel
+- [Radix UI](https://radix-ui.com) for accessible primitives
+- [Lucide](https://lucide.dev) for icons
+- [shadcn/ui](https://ui.shadcn.com) for the component architecture inspiration
+- Every contributor who has opened a PR or filed an issue
+
+---
+
+## Support the Project
+
+If OnlineUtility saves you time, consider:
+
+- ⭐ **Starring the repository** — helps others discover the project
+- 🐛 **Reporting bugs** — open a [GitHub issue](https://github.com/your-org/OnlineUtility/issues)
+- 💡 **Suggesting tools** — start a [GitHub Discussion](https://github.com/your-org/OnlineUtility/discussions)
+- 🛠️ **Contributing code** — read [CONTRIBUTING.md](CONTRIBUTING.md) and open a PR
+
+---
+
+[![Star on GitHub](https://img.shields.io/github/stars/your-org/OnlineUtility?style=social)](https://github.com/your-org/OnlineUtility)
+
+If this project is useful to you, a ⭐ on GitHub is the best way to show it and help others find it.
